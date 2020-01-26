@@ -31,7 +31,7 @@
     <AppXManifest Include="D:\webApp\Atlas\Atlas\HmiPackage\bin\AnyCPU\Release\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-01-26T16:11:10.560</Modified>
+      <Modified>2020-01-26T16:47:57.772</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
@@ -109,9 +109,17 @@
       <PackagePath>HMI\System.ValueTuple.dll</PackagePath>
       <Modified>2018-05-15T05:29:52.000</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\HMI\Properties\Settings.settings">
+      <PackagePath>HMI\Properties\Settings.settings</PackagePath>
+      <Modified>2020-01-26T15:25:21.584</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\HMI\Properties\Settings.Designer.cs">
+      <PackagePath>HMI\Properties\Settings.Designer.cs</PackagePath>
+      <Modified>2020-01-26T15:25:21.589</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\HMI\bin\Release\HMI.exe">
       <PackagePath>HMI\HMI.exe</PackagePath>
-      <Modified>2020-01-26T16:11:10.330</Modified>
+      <Modified>2020-01-26T16:47:57.627</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\HMI\bin\Release\HMI.exe.config">
       <PackagePath>HMI\HMI.exe.config</PackagePath>

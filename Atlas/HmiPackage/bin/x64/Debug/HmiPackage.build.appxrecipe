@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>KARATEBOY-HOME</Machine>
+    <WindowsUser>user</WindowsUser>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetOsVersion>10.0</TargetOsVersion>
+    <TargetOsDescription>Windows 10.0</TargetOsDescription>
+    <SolutionConfiguration>Debug|x64</SolutionConfiguration>
+    <PackageArchitecture>x64</PackageArchitecture>
+    <PackageIdentityName>3a5eb3d9-14d4-4778-8ba2-7edc01b45c0a</PackageIdentityName>
+    <PackageIdentityPublisher>CN=user</PackageIdentityPublisher>
+    <IntermediateOutputPath>D:\webApp\Atlas\Atlas\HmiPackage\obj\x64\Debug\</IntermediateOutputPath>
+    <RemoteDeploymentType></RemoteDeploymentType>
+    <PackageRegistrationPath></PackageRegistrationPath>
+    <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
+    <DeployOptionalPackages>false</DeployOptionalPackages>
+    <WindowsSdkPath></WindowsSdkPath>
+    <LayoutDir>D:\webApp\Atlas\Atlas\HmiPackage\bin\x64\Debug\AppX</LayoutDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="D:\webApp\Atlas\Atlas\HmiPackage\bin\x64\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\HmiPackage\Images\SplashScreen.scale-200.png">
+      <PackagePath>Images\SplashScreen.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\HmiPackage\Images\LockScreenLogo.scale-200.png">
+      <PackagePath>Images\LockScreenLogo.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\HmiPackage\Images\Square150x150Logo.scale-200.png">
+      <PackagePath>Images\Square150x150Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\HmiPackage\Images\Square44x44Logo.scale-200.png">
+      <PackagePath>Images\Square44x44Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\HmiPackage\Images\Square44x44Logo.targetsize-24_altform-unplated.png">
+      <PackagePath>Images\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\HmiPackage\Images\StoreLogo.png">
+      <PackagePath>Images\StoreLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\HmiPackage\Images\Wide310x150Logo.scale-200.png">
+      <PackagePath>Images\Wide310x150Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\HmiPackage\bin\x64\Debug\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll">
+      <PackagePath>HMI\Microsoft.Bcl.AsyncInterfaces.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll">
+      <PackagePath>HMI\System.Buffers.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll">
+      <PackagePath>HMI\System.Memory.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll">
+      <PackagePath>HMI\System.Numerics.Vectors.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\packages\System.Runtime.CompilerServices.Unsafe.4.7.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll">
+      <PackagePath>HMI\System.Runtime.CompilerServices.Unsafe.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\packages\System.Text.Encodings.Web.4.7.0\lib\netstandard2.0\System.Text.Encodings.Web.dll">
+      <PackagePath>HMI\System.Text.Encodings.Web.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\packages\System.Text.Json.4.7.0\lib\net461\System.Text.Json.dll">
+      <PackagePath>HMI\System.Text.Json.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll">
+      <PackagePath>HMI\System.Threading.Tasks.Extensions.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll">
+      <PackagePath>HMI\System.ValueTuple.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\HMI\Properties\Settings.settings">
+      <PackagePath>HMI\Properties\Settings.settings</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\HMI\Properties\Settings.Designer.cs">
+      <PackagePath>HMI\Properties\Settings.Designer.cs</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\HMI\bin\Debug\HMI.exe">
+      <PackagePath>HMI\HMI.exe</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\HMI\bin\Debug\HMI.exe.config">
+      <PackagePath>HMI\HMI.exe.config</PackagePath>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>

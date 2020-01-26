@@ -55,16 +55,18 @@ namespace HMI
         }
         public void Save()
         {
-            /*
-            Trace.WriteLine($"Update {configFileName}");
-            byte[] jsonUtf8Bytes;
-            var options = new JsonSerializerOptions
+            //Serialized AccountList
+            HMI.Properties.Settings.Default.userList.Clear();
+            HMI.Properties.Settings.Default.passwordList.Clear();
+            HMI.Properties.Settings.Default.accessLevelList.Clear();
+            foreach(Account account in AccountList)
             {
-                WriteIndented = true
-            };
-            jsonUtf8Bytes = JsonSerializer.SerializeToUtf8Bytes(this, options);
-            */
-            //JsonSerializer.Serialize<HmiConfig>(this,)
+                HMI.Properties.Settings.Default.userList.Add(account.ID);
+                HMI.Properties.Settings.Default.passwordList.Add(account.Password);
+                HMI.Properties.Settings.Default.accessLevelList.Add(account.AccessLevel.ToString());
+            }
+
+            HMI.Properties.Settings.Default.Save();
         }
     }
 }

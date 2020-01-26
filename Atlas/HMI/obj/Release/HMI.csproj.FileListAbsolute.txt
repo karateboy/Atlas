@@ -3,8 +3,11 @@ D:\webApp\Atlas\Atlas\HMI\obj\Release\Login.g.cs
 D:\webApp\Atlas\Atlas\HMI\obj\Release\Main.g.cs
 D:\webApp\Atlas\Atlas\HMI\obj\Release\MainWindow.g.cs
 D:\webApp\Atlas\Atlas\HMI\obj\Release\App.g.cs
+D:\webApp\Atlas\Atlas\HMI\obj\Release\HMI_Content.g.cs
 D:\webApp\Atlas\Atlas\HMI\obj\Release\HMI_MarkupCompile.cache
 D:\webApp\Atlas\Atlas\HMI\obj\Release\HMI_MarkupCompile.lref
+D:\webApp\Atlas\Atlas\HMI\bin\Release\Properties\Settings.settings
+D:\webApp\Atlas\Atlas\HMI\bin\Release\Properties\Settings.Designer.cs
 D:\webApp\Atlas\Atlas\HMI\bin\Release\HMI.exe.config
 D:\webApp\Atlas\Atlas\HMI\bin\Release\HMI.exe
 D:\webApp\Atlas\Atlas\HMI\bin\Release\HMI.pdb
@@ -37,4 +40,3 @@ D:\webApp\Atlas\Atlas\HMI\obj\Release\HMI.csproj.GenerateResource.cache
 D:\webApp\Atlas\Atlas\HMI\obj\Release\HMI.csproj.CopyComplete
 D:\webApp\Atlas\Atlas\HMI\obj\Release\HMI.exe
 D:\webApp\Atlas\Atlas\HMI\obj\Release\HMI.pdb
-D:\webApp\Atlas\Atlas\HMI\obj\Release\HMI.csprojAssemblyReference.cache

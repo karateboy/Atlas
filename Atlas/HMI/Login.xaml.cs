@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Diagnostics.Trace;
 
 namespace HMI
 {
@@ -70,7 +71,13 @@ namespace HMI
 
         private void OnCancel(object sender, RoutedEventArgs e)
         {
+            WriteLine("Change user password to asdf");
+            var matched = HmiConfig.Instance.AccountList.Find(account => {
+                return account.ID == "user";
+            });
 
+            matched.Password = "asdf";
+            HmiConfig.Instance.Save();
         }
     }
 }

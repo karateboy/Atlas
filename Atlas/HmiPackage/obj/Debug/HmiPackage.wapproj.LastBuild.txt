@@ -15,7 +15,8 @@ D:\webApp\Atlas\Atlas\packages\System.Text.Encodings.Web.4.7.0\lib\netstandard2.
 D:\webApp\Atlas\Atlas\packages\System.Text.Json.4.7.0\lib\net461\System.Text.Json.dll
 D:\webApp\Atlas\Atlas\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll
 D:\webApp\Atlas\Atlas\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll
-D:\webApp\Atlas\Atlas\HMI\hmi.json
+D:\webApp\Atlas\Atlas\HMI\Properties\Settings.Designer.cs
+D:\webApp\Atlas\Atlas\HMI\Properties\Settings.settings
 D:\webApp\Atlas\Atlas\HMI\bin\Debug\HMI.exe
 D:\webApp\Atlas\Atlas\HMI\bin\Debug\HMI.exe.config
 D:\webApp\Atlas\Atlas\HMI\bin\Debug\HMI.pdb

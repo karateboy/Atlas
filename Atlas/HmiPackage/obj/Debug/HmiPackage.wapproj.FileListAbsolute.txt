@@ -31,4 +31,5 @@ D:\webApp\Atlas\Atlas\HmiPackage\bin\AnyCPU\Debug\HMI\System.Text.Encodings.Web.
 D:\webApp\Atlas\Atlas\HmiPackage\bin\AnyCPU\Debug\HMI\System.Text.Json.dll
 D:\webApp\Atlas\Atlas\HmiPackage\bin\AnyCPU\Debug\HMI\System.Threading.Tasks.Extensions.dll
 D:\webApp\Atlas\Atlas\HmiPackage\bin\AnyCPU\Debug\HMI\System.ValueTuple.dll
-D:\webApp\Atlas\Atlas\HmiPackage\bin\AnyCPU\Debug\HMI\hmi.json
+D:\webApp\Atlas\Atlas\HmiPackage\bin\AnyCPU\Debug\HMI\Properties\Settings.Designer.cs
+D:\webApp\Atlas\Atlas\HmiPackage\bin\AnyCPU\Debug\HMI\Properties\Settings.settings

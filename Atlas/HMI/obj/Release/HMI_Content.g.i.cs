@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("hmi.json")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("properties/settings.settings")]
 
 
