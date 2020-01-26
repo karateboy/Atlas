@@ -1,0 +1,50 @@
+﻿<Page x:Class="HMI.Login"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:local="clr-namespace:HMI"
+	  mc:Ignorable="d"
+	  Title="登入"
+	  Height="165"
+	  x:Name="login"
+	  Loaded="Page_Loaded">
+	<Border>
+		<UniformGrid Grid.Row="1"
+					 Grid.Column="1"
+					 Columns="2"
+					 Rows="3"
+					 Width="400"
+					 Margin="20">
+			<UniformGrid.Background>
+				<LinearGradientBrush EndPoint="0.5,1"
+									 MappingMode="RelativeToBoundingBox"
+									 StartPoint="0.5,0">
+					<GradientStop Color="#FF51DA89"
+								  Offset="0.651" />
+					<GradientStop Color="#FF5193DA"
+								  Offset="0.237" />
+				</LinearGradientBrush>
+			</UniformGrid.Background>
+			<Label VerticalAlignment="Bottom" Margin="20 0"
+				   HorizontalAlignment="Right">使用者:</Label>
+			<TextBox VerticalAlignment="Bottom"
+					 HorizontalAlignment="Left"
+					 Width="150" Text="{Binding UserName, ElementName=login}"></TextBox>
+			<Label VerticalAlignment="Center"
+				   Margin="20 0"
+				   HorizontalAlignment="Right">密碼:</Label>
+			<PasswordBox VerticalAlignment="Center" x:Name="password"
+						 HorizontalAlignment="Left"
+						 Width="150" />
+			<Button VerticalAlignment="Top" x:Name="OK"
+					HorizontalAlignment="Center"
+					Margin="20 0 0 0"
+					Click="OnOk">確認</Button>
+			<Button VerticalAlignment="Top" Name="Cancel"
+					HorizontalAlignment="Center"
+					Margin="20 0 0 0"
+					Click="OnCancel">取消</Button>
+		</UniformGrid>
+	</Border>
+</Page>

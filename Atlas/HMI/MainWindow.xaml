@@ -5,4 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HMI"
         mc:Ignorable="d" 
-        Title="聯宙科技HMI" Height="350" Width="500" Source="Page1.xaml" WindowState="Maximized" WindowStyle="None"/>
+        Title="聯宙科技HMI" Height="350" Width="500" Source="About.xaml"
+				  Activated="NavigationWindow_Activated"
+				  Topmost="True"
+				  ResizeMode="CanMinimize"
+				  WindowStartupLocation="CenterScreen"
+				  Cursor="Hand" />
