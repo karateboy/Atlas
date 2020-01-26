@@ -37,3 +37,4 @@ D:\webApp\Atlas\Atlas\HMI\obj\Release\HMI.csproj.GenerateResource.cache
 D:\webApp\Atlas\Atlas\HMI\obj\Release\HMI.csproj.CopyComplete
 D:\webApp\Atlas\Atlas\HMI\obj\Release\HMI.exe
 D:\webApp\Atlas\Atlas\HMI\obj\Release\HMI.pdb
+D:\webApp\Atlas\Atlas\HMI\obj\Release\HMI.csprojAssemblyReference.cache

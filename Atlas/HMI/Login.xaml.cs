@@ -53,24 +53,16 @@ namespace HMI
 
         private void OnOk(object sender, RoutedEventArgs e)
         {
-            if(UserName == "user" && password.Password == "user")
+            try
             {
+                var matched = HmiConfig.Instance.AccountList.Find(account => {
+                    return account.ID == UserName && account.Password == password.Password;
+                });
                 this.mMainWindow.IsLogin = true;
-                this.mMainWindow.AccessLevel = AccessLevel.User;
-                this.mMainWindow.Navigate(new About());
-            }else if (UserName == "op" && password.Password == "op")
-            {
-                this.mMainWindow.IsLogin = true;
-                this.mMainWindow.AccessLevel = AccessLevel.Operator;
+                this.mMainWindow.AccessLevel = matched.AccessLevel;
                 this.mMainWindow.Navigate(new About());
             }
-            else if (UserName == "admin" && password.Password == "admin")
-            {
-                this.mMainWindow.IsLogin = true;
-                this.mMainWindow.AccessLevel = AccessLevel.Administrator;
-                this.mMainWindow.Navigate(new About());
-            }
-            else
+            catch (Exception)
             {
                 MessageBox.Show("錯誤的帳號或密碼!");
             }

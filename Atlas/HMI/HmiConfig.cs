@@ -15,19 +15,43 @@ namespace HMI
         public string Password { get; set; }
         public AccessLevel AccessLevel { get; set; }
     }
-    class HmiConfig
+    sealed class HmiConfig
     {
-        public HmiConfig()
+        private static volatile HmiConfig instance;
+        public static HmiConfig Instance
         {
+            get
+            {
+                if(instance == null)
+                {
+                    instance = new HmiConfig();
+                }
+
+                return instance;
+            }
+        }
+ 
+        private HmiConfig()
+        {
+            AccountList = new List<Account>();
             Load();
         }
+        public List<Account> AccountList { get; set; }
 
-        List<Account> Accounts { get; set; }
-
-        void Load()
+        private void Load()
         {
-            
-            
+            var setting = HMI.Properties.Settings.Default;
+            int num_account = setting.userList.Count;
+            for (int i = 0; i < num_account; i++)
+            {
+                var account = new Account
+                {
+                    ID = setting.userList[i],
+                    Password = setting.passwordList[i],
+                    AccessLevel = (AccessLevel)Enum.Parse(typeof(AccessLevel), setting.accessLevelList[i])
+                };
+                AccountList.Add(account);
+            }
         }
         public void Save()
         {

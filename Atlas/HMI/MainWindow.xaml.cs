@@ -29,11 +29,9 @@ namespace HMI
         {
             InitializeComponent();
             IsLogin = false;
-            hmiConfig = new HmiConfig();
             Trace.WriteLine("MainWindows");
         }
 
-        readonly HmiConfig hmiConfig;
         public bool IsLogin { get; set; }
         public AccessLevel AccessLevel { get; set; }
         private void NavigationWindow_Activated(object sender, EventArgs e)
