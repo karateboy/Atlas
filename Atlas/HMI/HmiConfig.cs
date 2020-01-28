@@ -7,6 +7,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows;
 using HMI.Properties;
+using System.Collections.ObjectModel;
 namespace HMI
 {
     class Account
@@ -34,11 +35,11 @@ namespace HMI
         private HmiConfig()
         {
             AccountList = new List<Account>();
-            Load();
+            LoadAccount();
         }
         public List<Account> AccountList { get; set; }
 
-        private void Load()
+        private void LoadAccount()
         {
             var setting = HMI.Properties.Settings.Default;
             int num_account = setting.userList.Count;
@@ -53,7 +54,7 @@ namespace HMI
                 AccountList.Add(account);
             }
         }
-        public void Save()
+        public void SaveAccount()
         {
             //Serialized AccountList
             HMI.Properties.Settings.Default.userList.Clear();

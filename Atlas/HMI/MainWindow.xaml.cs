@@ -18,7 +18,7 @@ namespace HMI
 {
     public enum AccessLevel
     {
-        User, Operator, Administrator
+        User=1, Operator=2, Administrator=3
     }
     /// <summary>
     /// MainWindow.xaml 的互動邏輯
@@ -28,18 +28,19 @@ namespace HMI
         public MainWindow()
         {
             InitializeComponent();
+            Instance = this;
             IsLogin = false;
-            Trace.WriteLine("MainWindows");
         }
 
+        public static MainWindow Instance { get; set; }
         public bool IsLogin { get; set; }
         public AccessLevel AccessLevel { get; set; }
-        private void NavigationWindow_Activated(object sender, EventArgs e)
+
+        public static void Logout()
         {
-            if (!IsLogin)
-            {
-                this.Navigate(new Login(this));
-            }
+            Instance.RemoveBackEntry();
+            Instance.IsLogin = false;
+            Instance.Navigate(new Login());
         }
     }
 }

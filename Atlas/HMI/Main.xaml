@@ -5,10 +5,72 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:HMI"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Main">
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="Main"
+	  Loaded="Page_Loaded">
 
     <Grid>
-        
-    </Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto"></RowDefinition>
+			<RowDefinition Height="2*"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="auto"></RowDefinition>
+		</Grid.RowDefinitions>
+		<Label Content="AMC Manifold Controller"
+			   FontSize="36"
+			   FontWeight="Bold" Grid.Row="0" />
+		<Grid Grid.Row="1">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"></ColumnDefinition>
+				<ColumnDefinition Width="*"></ColumnDefinition>
+				<ColumnDefinition Width="*"></ColumnDefinition>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="auto"></RowDefinition>
+				<RowDefinition Height="*"></RowDefinition>
+			</Grid.RowDefinitions>
+			<Label Grid.Row="0"
+				   Grid.Column="0">DATA__CH: 0</Label>
+			<TextBlock Grid.Row="1"
+					   Grid.Column="0">Na+
+				NH4+....
+			</TextBlock>
+			<Label Grid.Row="0"
+				   Grid.Column="1">Flow: 0.0 LPM</Label>
+			<TextBlock Grid.Row="1"
+					   Grid.Column="1">Na+
+				NH4+....</TextBlock>
+			<Label Grid.Row="0"
+				   Grid.Column="2">採樣 + 分析</Label>
+			<StackPanel Orientation="Vertical" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="2">
+				<Label>執行順序</Label>
+				<Label>採樣通道</Label>
+				<Label>潔淨時間</Label>
+				<Label>採樣時間</Label>
+				<Label>分析時間</Label>
+				<Label>分析通道</Label>
+				
+			</StackPanel>
+		</Grid>
+		<Border Grid.Row="2" BorderBrush="AliceBlue" BorderThickness="10"></Border>
+		<StackPanel Grid.Row="3"
+					Orientation="Horizontal"
+					HorizontalAlignment="Center"
+					Margin="20">
+			<Button x:Name="btnLogout" Content="登出"
+					Click="btnLogout_Click"></Button>
+			<Button x:Name="btnRemoteMode">
+				<CheckBox Content="遠端模式"></CheckBox></Button>
+			<Button x:Name="btnOperation">
+				<CheckBox Content="系統運轉"></CheckBox>
+			</Button>
+			<Button x:Name="btnConfig"
+					Content="參數設定"
+					Click="btnConfig_Click" />
+			<Button x:Name="btnQuery"
+					Content="資料查詢" />
+			<Button x:Name="btnStatus"
+					Content="系統狀態" />
+		</StackPanel>
+	</Grid>
 </Page>

@@ -1,0 +1,96 @@
+﻿<Page x:Class="HMI.ConfigPage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:local="clr-namespace:HMI"
+	  mc:Ignorable="d"
+	  d:DesignHeight="450"
+	  d:DesignWidth="800"
+	  Title="ConfigPage">
+	<Grid Margin="10">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="auto"></RowDefinition>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"></ColumnDefinition>
+		</Grid.ColumnDefinitions>
+		<GroupBox Grid.Row="0"
+				  Grid.Column="0">
+			<GroupBox.Header>
+				<Label>系統設定</Label>
+			</GroupBox.Header>
+			<WrapPanel Orientation="Horizontal">
+				<Button x:Name="btnSortConfig"
+						Click="btnSortConfig_Click">排序設定</Button>
+				<Button x:Name="btnChannelConfig"
+						Click="btnChannelConfig_Click">通道設定</Button>
+				<Button x:Name="btnMtConfig"
+						Click="btnMtConfig_Click">測項設定</Button>
+				<Button x:Name="btnAlertConfig"
+						Click="btnAlertConfig_Click">警報設定</Button>
+				<Button x:Name="btnMeasureConfig"
+						Click="btnMeasureConfig_Click">數據設定</Button>
+				<Button x:Name="btnFlowConfig"
+						Click="btnFlowConfig_Click">流量設定</Button>
+				<Button>密碼設定</Button>
+				<Button>報表設定</Button>
+			</WrapPanel>
+		</GroupBox>
+		<GroupBox Grid.Row="1"
+				  Grid.Column="0">
+			<GroupBox.Header>
+				<Label>功能設定</Label>
+			</GroupBox.Header>
+			<WrapPanel Orientation="Horizontal">
+				<Button>
+					<CheckBox>超限重測</CheckBox>
+				</Button>
+				<Button>
+					<CheckBox>超限連測</CheckBox>
+				</Button>
+				<Button>
+					<CheckBox>超連不測</CheckBox>
+				</Button>
+				<Button>
+					<CheckBox>低限不測</CheckBox>
+				</Button>
+				<Button>
+					<CheckBox>超限重測</CheckBox>
+				</Button>
+				<Button>
+					<CheckBox>漏水停機</CheckBox>
+				</Button>
+			</WrapPanel>
+		</GroupBox>
+		<GroupBox Grid.Row="2"
+				  Grid.Column="0">
+			<GroupBox.Header>
+				<Label>維修功能</Label>
+			</GroupBox.Header>
+			<WrapPanel Orientation="Horizontal">
+				<Button>通道測試</Button>
+				<Button>單元測試</Button>
+				<Button>維修測試</Button>
+				<Button>採樣暫停</Button>
+				<Button>DI 測試</Button>
+				<Button>系統測試</Button>
+				<Button>自動解除</Button>
+				<Button>設備隔離</Button>
+				<Button>斷水測試</Button>
+				<Button>排水測試</Button>
+				<Button>針筒測試</Button>
+				<Button>測值隔離</Button>
+			</WrapPanel>
+		</GroupBox>
+		<Border Grid.Row="3" Grid.Column="0">
+			<StackPanel Orientation="Horizontal">
+				<Button x:Name="Back"
+						Click="Back_Click">回主畫面</Button>
+			</StackPanel>
+		</Border>
+	</Grid>
+</Page>

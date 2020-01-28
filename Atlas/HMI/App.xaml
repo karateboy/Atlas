@@ -21,8 +21,6 @@
 					Value="Hand" />
 			<Setter Property="BorderThickness"
 					Value="2" />
-			<Setter Property="BorderBrush"
-					Value="DarkRed" />
 		</Style>
 		<Style TargetType="{x:Type Label}">
 			<Setter Property="FontSize"

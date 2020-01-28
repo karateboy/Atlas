@@ -5,9 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HMI"
         mc:Ignorable="d" 
-        Title="聯宙科技HMI" Height="350" Width="500" Source="About.xaml"
-				  Activated="NavigationWindow_Activated"
-				  Topmost="True"
-				  ResizeMode="CanMinimize"
+        Title="Atlas CAA 500 Cleanroom Air Analyzer"
+				  Source="Login.xaml"
 				  WindowStartupLocation="CenterScreen"
-				  Cursor="Hand" />
+				  Cursor="Hand"
+				  WindowState="Maximized" />

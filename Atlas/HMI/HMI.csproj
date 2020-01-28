@@ -98,6 +98,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AccountConfigPage.xaml.cs">
+      <DependentUpon>AccountConfigPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AlertConfigPage.xaml.cs">
+      <DependentUpon>AlertConfigPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ChannelConfigPage.xaml.cs">
+      <DependentUpon>ChannelConfigPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigPage.xaml.cs">
+      <DependentUpon>ConfigPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FlowConfigPage.xaml.cs">
+      <DependentUpon>FlowConfigPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MeasureConfigPage.xaml.cs">
+      <DependentUpon>MeasureConfigPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MtConfigPage.xaml.cs">
+      <DependentUpon>MtConfigPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -105,7 +126,31 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="SortConfigPage.xaml.cs">
+      <DependentUpon>SortConfigPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeSpanConverter.cs" />
     <Page Include="About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AccountConfigPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AlertConfigPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChannelConfigPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConfigPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FlowConfigPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -139,6 +184,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MeasureConfigPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MtConfigPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SortConfigPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

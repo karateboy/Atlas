@@ -21,16 +21,14 @@ namespace HMI
     /// </summary>
     public partial class Login : Page
     {
-        private MainWindow mMainWindow;
-        public Login(MainWindow mMainWindow)
+        public Login()
         {
-            this.mMainWindow = mMainWindow;
             InitializeComponent();            
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            this.mMainWindow.RemoveBackEntry();
+            MainWindow.Instance.RemoveBackEntry();
         }
 
 
@@ -59,9 +57,9 @@ namespace HMI
                 var matched = HmiConfig.Instance.AccountList.Find(account => {
                     return account.ID == UserName && account.Password == password.Password;
                 });
-                this.mMainWindow.IsLogin = true;
-                this.mMainWindow.AccessLevel = matched.AccessLevel;
-                this.mMainWindow.Navigate(new About());
+                MainWindow.Instance.IsLogin = true;
+                MainWindow.Instance.AccessLevel = matched.AccessLevel;
+                MainWindow.Instance.Navigate(new Main());
             }
             catch (Exception)
             {
@@ -71,13 +69,9 @@ namespace HMI
 
         private void OnCancel(object sender, RoutedEventArgs e)
         {
-            WriteLine("Change user password to asdf");
-            var matched = HmiConfig.Instance.AccountList.Find(account => {
-                return account.ID == "user";
-            });
-
-            matched.Password = "asdf";
-            HmiConfig.Instance.Save();
+            UserName = string.Empty;
+            password.Password = string.Empty;
+            
         }
     }
 }

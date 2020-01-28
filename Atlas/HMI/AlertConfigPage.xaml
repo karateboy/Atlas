@@ -1,0 +1,125 @@
+﻿<Page x:Class="HMI.AlertConfigPage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:local="clr-namespace:HMI"
+	  mc:Ignorable="d"
+	  d:DesignHeight="450"
+	  d:DesignWidth="800"
+	  Title="AlertConfigPage">
+	<Grid Margin="10">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="auto"></RowDefinition>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"></ColumnDefinition>
+		</Grid.ColumnDefinitions>
+		<Label Grid.Row="0"
+			   Grid.Column="0"
+			   Margin="5"
+			   FontSize="36"
+			   Name="header"
+			   FontWeight="Bold"></Label>
+		<DataGrid AutoGenerateColumns="False"
+				  Grid.Row="1"
+				  Name="alertConfig"
+				  CanUserAddRows="False"
+				  CanUserDeleteRows="False"
+				  Margin="5 0"
+				  FontSize="18">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="測項"
+									Binding="{Binding Name }"
+									IsReadOnly="True"></DataGridTextColumn>
+				<DataGridTemplateColumn Header="第0組">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<UniformGrid Rows="2"
+										 Columns="3">
+								<Label Foreground="Green">Lo</Label>
+								<Label Foreground="LightBlue">Hi</Label>
+								<Label Foreground="Red">HH</Label>
+								<TextBox Foreground="Green"
+										 Text="{Binding Thresholds[0].Lo}"></TextBox>
+								<TextBox Foreground="LightBlue"
+										 Text="{Binding Thresholds[0].Hi}"></TextBox>
+								<TextBox Foreground="Red"
+										 Text="{Binding Thresholds[0].HH}"></TextBox>
+							</UniformGrid>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+				<DataGridTemplateColumn Header="第1組">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<UniformGrid Rows="2"
+										 Columns="3">
+								<Label Foreground="Green">Lo</Label>
+								<Label Foreground="LightBlue">Hi</Label>
+								<Label Foreground="Red">HH</Label>
+								<TextBox Foreground="Green"
+										 Text="{Binding Thresholds[1].Lo}"></TextBox>
+								<TextBox Foreground="LightBlue"
+										 Text="{Binding Thresholds[1].Hi}"></TextBox>
+								<TextBox Foreground="Red"
+										 Text="{Binding Thresholds[1].HH}"></TextBox>
+							</UniformGrid>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+				<DataGridTemplateColumn Header="第2組">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<UniformGrid Rows="2"
+										 Columns="3">
+								<Label Foreground="Green">Lo</Label>
+								<Label Foreground="LightBlue">Hi</Label>
+								<Label Foreground="Red">HH</Label>
+								<TextBox Foreground="Green"
+										 Text="{Binding Thresholds[2].Lo}"></TextBox>
+								<TextBox Foreground="LightBlue"
+										 Text="{Binding Thresholds[2].Hi}"></TextBox>
+								<TextBox Foreground="Red"
+										 Text="{Binding Thresholds[2].HH}"></TextBox>
+							</UniformGrid>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+				<DataGridTemplateColumn Header="第3組">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<UniformGrid Rows="2"
+										 Columns="3">
+								<Label Foreground="Green">Lo</Label>
+								<Label Foreground="LightBlue">Hi</Label>
+								<Label Foreground="Red">HH</Label>
+								<TextBox Foreground="Green"
+										 Text="{Binding Thresholds[3].Lo}"></TextBox>
+								<TextBox Foreground="LightBlue"
+										 Text="{Binding Thresholds[3].Hi}"></TextBox>
+								<TextBox Foreground="Red"
+										 Text="{Binding Thresholds[3].HH}"></TextBox>
+							</UniformGrid>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+			</DataGrid.Columns>
+		</DataGrid>
+		<Border Grid.Row="2"
+				Grid.Column="0">
+			<StackPanel Orientation="Horizontal">
+				<Button x:Name="btnMainScreen"
+						Click="btnMainScreen_Click">回主畫面</Button>
+				<Button x:Name="btnBack"
+						Click="btnBack_Click">上層選單</Button>
+				<Button x:Name="btnUpdate"
+						Click="btnUpdate_Click">資料更新</Button>
+				<Button x:Name="btnSwitchIon"
+						Click="btnSwitchIon_Click">切換離子</Button>
+			</StackPanel>
+		</Border>
+	</Grid>
+</Page>

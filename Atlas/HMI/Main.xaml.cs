@@ -24,5 +24,20 @@ namespace HMI
         {
             InitializeComponent();
         }
+
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Logout();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Instance.RemoveBackEntry();
+        }
+
+        private void btnConfig_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Instance.Navigate(new ConfigPage());
+        }
     }
 }
