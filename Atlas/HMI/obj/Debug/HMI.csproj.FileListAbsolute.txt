@@ -1,4 +1,6 @@
 D:\webApp\Atlas\Atlas\HMI\obj\Debug\About.g.cs
+D:\webApp\Atlas\Atlas\HMI\obj\Debug\AccountConfigPage.g.cs
+D:\webApp\Atlas\Atlas\HMI\obj\Debug\AlertConfigPage.g.cs
 D:\webApp\Atlas\Atlas\HMI\obj\Debug\ChannelConfigPage.g.cs
 D:\webApp\Atlas\Atlas\HMI\obj\Debug\ConfigPage.g.cs
 D:\webApp\Atlas\Atlas\HMI\obj\Debug\FlowConfigPage.g.cs
@@ -38,6 +40,8 @@ D:\webApp\Atlas\Atlas\HMI\bin\Debug\System.Threading.Tasks.Extensions.xml
 D:\webApp\Atlas\Atlas\HMI\bin\Debug\System.ValueTuple.xml
 D:\webApp\Atlas\Atlas\HMI\obj\Debug\App.baml
 D:\webApp\Atlas\Atlas\HMI\obj\Debug\About.baml
+D:\webApp\Atlas\Atlas\HMI\obj\Debug\AccountConfigPage.baml
+D:\webApp\Atlas\Atlas\HMI\obj\Debug\AlertConfigPage.baml
 D:\webApp\Atlas\Atlas\HMI\obj\Debug\ChannelConfigPage.baml
 D:\webApp\Atlas\Atlas\HMI\obj\Debug\ConfigPage.baml
 D:\webApp\Atlas\Atlas\HMI\obj\Debug\FlowConfigPage.baml
@@ -53,7 +57,3 @@ D:\webApp\Atlas\Atlas\HMI\obj\Debug\HMI.csproj.GenerateResource.cache
 D:\webApp\Atlas\Atlas\HMI\obj\Debug\HMI.csproj.CopyComplete
 D:\webApp\Atlas\Atlas\HMI\obj\Debug\HMI.exe
 D:\webApp\Atlas\Atlas\HMI\obj\Debug\HMI.pdb
-D:\webApp\Atlas\Atlas\HMI\obj\Debug\HMI.csprojAssemblyReference.cache
-D:\webApp\Atlas\Atlas\HMI\obj\Debug\AlertConfigPage.g.cs
-D:\webApp\Atlas\Atlas\HMI\obj\Debug\AlertConfigPage.baml
-D:\webApp\Atlas\Atlas\HMI\obj\Debug\AccountConfigPage.g.cs

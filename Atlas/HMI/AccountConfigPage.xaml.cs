@@ -25,5 +25,21 @@ namespace HMI
         {
             InitializeComponent();
         }
+
+        private void btnMainScreen_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Instance.Navigate(new Main());
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Instance.GoBack();
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("成功更新", "成功", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
     }
 }
