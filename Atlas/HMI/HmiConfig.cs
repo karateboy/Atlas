@@ -8,13 +8,51 @@ using System.Threading.Tasks;
 using System.Windows;
 using HMI.Properties;
 using System.Collections.ObjectModel;
+using System.Windows.Data;
+using System.Globalization;
+using System.Diagnostics;
+
 namespace HMI
 {
-    class Account
+    public class Account
     {
         public string ID { get; set; }
         public string Password { get; set; }
         public AccessLevel AccessLevel { get; set; }
+
+        public override string ToString()
+        {
+            return $"ID->{ID}, Password->{Password}, AC=>{AccessLevel}";
+        }
+    }
+
+    public class AccessLevelConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {            
+            Debug.WriteLine($"AccessLevel: convert ${value.GetType().FullName} to enum");
+            if(value is AccessLevel ac)
+            {
+                return Enum.GetName(typeof(AccessLevel), ac);
+            }
+            else
+            {
+                throw new Exception($"Unexpected type {value.GetType().FullName}");
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            Debug.WriteLine($"AccessLevel: convertBack ${value.GetType().FullName} to enum");
+            if(value is string str && Enum.TryParse<AccessLevel>(str, out AccessLevel ac))
+            {
+                return ac;
+            }
+            else
+            {
+                throw new Exception($"Unexpected type {value.GetType().FullName}");
+            }
+        }
     }
     sealed class HmiConfig
     {

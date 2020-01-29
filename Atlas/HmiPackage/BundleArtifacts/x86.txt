@@ -1,0 +1,2 @@
+MainPackage=D:\webApp\Atlas\Atlas\HmiPackage\bin\x86\Debug\HmiPackage_1.0.0.0_x86_Debug.appx
+SymbolPackage=D:\webApp\Atlas\Atlas\HmiPackage\obj\x86\Debug\Symbols\HmiPackage_1.0.0.0_x86_Debug.appxsym

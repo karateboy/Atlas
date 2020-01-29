@@ -59,5 +59,10 @@ namespace HMI
         {
             MainWindow.Instance.Navigate(new AlertConfigPage());
         }
+
+        private void btnAccountConfig_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Instance.Navigate(new AccountConfigPage());
+        }
     }
 }

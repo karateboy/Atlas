@@ -36,7 +36,8 @@
 						Click="btnMeasureConfig_Click">數據設定</Button>
 				<Button x:Name="btnFlowConfig"
 						Click="btnFlowConfig_Click">流量設定</Button>
-				<Button>密碼設定</Button>
+				<Button x:Name="btnAccountConfig"
+						Click="btnAccountConfig_Click">密碼設定</Button>
 				<Button>報表設定</Button>
 			</WrapPanel>
 		</GroupBox>

@@ -7,6 +7,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AccountConfigPage">
+	<Page.Resources>
+		<local:AccessLevelConverter x:Key="AccessLevelConverter" />
+	</Page.Resources>
 	<Grid Margin="10">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="auto"></RowDefinition>
@@ -23,21 +26,16 @@
 			   FontWeight="Bold">系統參數:密碼設定</Label>
 		<DataGrid AutoGenerateColumns="False"
 				  Grid.Row="1"
-				  Name="channelConfigSeq"
+				  Name="accountGrid"
 				  Margin="5 0"
 				  FontSize="18">
 			<DataGrid.Columns>
-				<DataGridTextColumn Header="編號"
-									IsReadOnly="True"
-									Binding="{Binding ID }"></DataGridTextColumn>
-				<DataGridCheckBoxColumn Header="選用"
-										Binding="{Binding Selected}" />
 				<DataGridTextColumn Header="名稱"
-									Binding="{Binding Name}" />
+									Binding="{Binding ID}" />
 				<DataGridTextColumn Header="密碼"
 									Binding="{Binding Password}" />
-				<DataGridTextColumn Header="等級"
-									Binding="{Binding AccessLevel}" />
+				<DataGridComboBoxColumn Header="等級" x:Name="accessLevelCombo" 
+										SelectedItemBinding="{Binding AccessLevel}"/>
 			</DataGrid.Columns>
 		</DataGrid>
 		<Border Grid.Row="4"

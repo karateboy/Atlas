@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\webApp\Atlas\Atlas\HMI\App.xaml
-121892713276
+131775444154
 11684423764
-201429904865
-126151594619
-About.xaml;AccountConfigPage.xaml;AlertConfigPage.xaml;ChannelConfigPage.xaml;ConfigPage.xaml;FlowConfigPage.xaml;Login.xaml;Main.xaml;MainWindow.xaml;MeasureConfigPage.xaml;MtConfigPage.xaml;SortConfigPage.xaml;
+219382538
+128143479269
+About.xaml;AccountConfigPage.xaml;AlertConfigPage.xaml;ChannelConfigPage.xaml;ConfigPage.xaml;FlowConfigPage.xaml;Login.xaml;Main.xaml;MainWindow.xaml;MeasureConfigPage.xaml;MtConfigPage.xaml;PointShapeLineExample.xaml;SortConfigPage.xaml;
 
 True
 
