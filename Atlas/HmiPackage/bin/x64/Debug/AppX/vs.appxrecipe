@@ -31,7 +31,7 @@
     <AppXManifest Include="D:\webApp\Atlas\Atlas\HmiPackage\bin\x64\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-01-29T16:49:12.080</Modified>
+      <Modified>2020-01-30T16:49:04.170</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
@@ -71,7 +71,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\HmiPackage\bin\x64\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2020-01-29T16:49:12.058</Modified>
+      <Modified>2020-01-30T10:36:45.074</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll">
       <PackagePath>HMI\LiveCharts.dll</PackagePath>
@@ -127,7 +127,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\HMI\bin\Debug\HMI.exe">
       <PackagePath>HMI\HMI.exe</PackagePath>
-      <Modified>2020-01-29T16:49:11.571</Modified>
+      <Modified>2020-01-30T16:49:03.747</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\webApp\Atlas\Atlas\HMI\bin\Debug\HMI.exe.config">
       <PackagePath>HMI\HMI.exe.config</PackagePath>

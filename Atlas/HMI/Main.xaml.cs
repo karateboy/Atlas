@@ -57,5 +57,10 @@ namespace HMI
         {
             MainWindow.Instance.Navigate(new ConfigPage());
         }
+
+        private void btnStatus_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Instance.Navigate(new SysStatusPage());
+        }
     }
 }

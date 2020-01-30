@@ -129,6 +129,9 @@
     <Compile Include="ConfigPage.xaml.cs">
       <DependentUpon>ConfigPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EventPage.xaml.cs">
+      <DependentUpon>EventPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FlowConfigPage.xaml.cs">
       <DependentUpon>FlowConfigPage.xaml</DependentUpon>
     </Compile>
@@ -151,6 +154,9 @@
     <Compile Include="SortConfigPage.xaml.cs">
       <DependentUpon>SortConfigPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SysStatusPage.xaml.cs">
+      <DependentUpon>SysStatusPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TimeSpanConverter.cs" />
     <Page Include="About.xaml">
       <SubType>Designer</SubType>
@@ -169,6 +175,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ConfigPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EventPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -219,6 +229,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SortConfigPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SysStatusPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

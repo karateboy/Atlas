@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="HMI.exe" size="115160">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="HMI.exe" size="126936">
       <assemblyIdentity name="HMI" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>GTAVndDgP8AyeBBCtklFjs4I4aPmjhfJcXAqn4H4F0k=</dsig:DigestValue>
+        <dsig:DigestValue>qnxYCGQgLrjX6MLsdQu6cWFb2KbVKtMW9EppChsSstI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

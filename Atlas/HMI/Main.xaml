@@ -191,7 +191,8 @@
 			<Button x:Name="btnQuery"
 					Content="資料查詢" />
 			<Button x:Name="btnStatus"
-					Content="系統狀態" />
+					Content="系統狀態"
+					Click="btnStatus_Click" />
 		</StackPanel>
 	</Grid>
 </Page>

@@ -1,0 +1,133 @@
+﻿<Page x:Class="HMI.SysStatusPage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:local="clr-namespace:HMI"
+	  mc:Ignorable="d"
+	  d:DesignHeight="600"
+	  d:DesignWidth="800"
+	  Title="SysStatusPage">
+	<Grid Margin="10">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="auto"></RowDefinition>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"></ColumnDefinition>
+		</Grid.ColumnDefinitions>
+		<Label Grid.Row="0"
+			   Grid.Column="0"
+			   Margin="5"
+			   FontSize="36"
+			   FontWeight="Bold">系統狀態</Label>
+		<Border Grid.Row="1"
+				Grid.Column="0"
+				Margin="10"
+				BorderBrush="AntiqueWhite"
+				Background="BlanchedAlmond">
+			<StackPanel>
+				<GroupBox Header="System Status"
+						  FontSize="24">
+					<UniformGrid Rows="5" Columns="2" HorizontalAlignment="Stretch">
+						<StackPanel Orientation="Horizontal">
+							<Label>Battery Level:</Label>
+							<TextBox IsReadOnly="True" Background="Green" Foreground="Wheat" VerticalAlignment="Center">OK</TextBox>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal">
+							<Label>Power Off Count:</Label>
+							<TextBox IsReadOnly="True"
+									 VerticalAlignment="Center">6</TextBox>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal">
+							<Label>Controller Comm:</Label>
+							<TextBox IsReadOnly="True"
+									 Background="Green"
+									 Foreground="Wheat"
+									 VerticalAlignment="Center">OK</TextBox>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal">
+							<Label>Power On total date:</Label>
+							<TextBox IsReadOnly="True"
+									 VerticalAlignment="Center">130</TextBox>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal">
+							<Label>Display Status:</Label>
+							<TextBox IsReadOnly="True"
+									 Background="Green"
+									 Foreground="Wheat"
+									 VerticalAlignment="Center">OK</TextBox>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal">
+							<Label>Operate total date:</Label>
+							<TextBox IsReadOnly="True"
+									 VerticalAlignment="Center">11</TextBox>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal">
+							<Label>Contract Status:</Label>
+							<TextBox IsReadOnly="True"
+									 Background="Green"
+									 Foreground="Wheat"
+									 VerticalAlignment="Center">OK</TextBox>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal">
+							<Label>Expiration date:</Label>
+							<TextBox IsReadOnly="True"
+									 VerticalAlignment="Center">93</TextBox>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal">
+							<Label>Maintenance Status:</Label>
+							<TextBox IsReadOnly="True"
+									 Background="Green"
+									 Foreground="Wheat"
+									 VerticalAlignment="Center">OK</TextBox>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal">
+							<Label>Maintenance date:</Label>
+							<TextBox IsReadOnly="True"
+									 VerticalAlignment="Center">93</TextBox>
+						</StackPanel>
+					</UniformGrid>
+				</GroupBox>
+				<GroupBox Header="Version Information"
+						  FontSize="24">
+					<StackPanel>
+						<StackPanel Orientation="Horizontal">
+							<Label>Controller:</Label>
+							<TextBox IsReadOnly="True"
+									 VerticalAlignment="Center">CP1H-XA40DR-A v1.0</TextBox>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal">
+							<Label>Display:</Label>
+							<TextBox IsReadOnly="True"
+									 VerticalAlignment="Center">NS17-Runtime v6.6</TextBox>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal">
+							<Label>Register Map:</Label>
+							<TextBox IsReadOnly="True"
+									 VerticalAlignment="Center">CX Designer v3.0</TextBox>
+						</StackPanel>
+					</StackPanel>
+				</GroupBox>
+				<GroupBox Header="Serial Number"
+						  FontSize="24">
+					<Label>CAA500_MS32_01 v4.0 for TSMC</Label>
+				</GroupBox>
+			</StackPanel>
+		</Border>
+		<Border Grid.Row="2"
+				Grid.Column="0">
+			<DockPanel>
+				<Button x:Name="btnMainScreen"
+						DockPanel.Dock="Left"
+						Click="btnMainScreen_Click">回主畫面</Button>
+				<Button x:Name="btnAlarmQuery"
+						DockPanel.Dock="Left"
+						Click="btnAlarmQuery_Click">警報查詢</Button>
+				<Button x:Name="btnFinishMaintenance"
+						HorizontalAlignment="Right">保養完成</Button>
+			</DockPanel>
+		</Border>
+	</Grid>
+</Page>
