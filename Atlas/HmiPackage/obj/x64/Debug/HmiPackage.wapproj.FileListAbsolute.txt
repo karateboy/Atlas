@@ -37,3 +37,5 @@ D:\webApp\Atlas\Atlas\HmiPackage\obj\x64\Debug\qualifiers.txt.intermediate
 D:\webApp\Atlas\Atlas\HmiPackage\obj\x64\Debug\MultipleQualifiersPerDimensionFound.txt
 D:\webApp\Atlas\Atlas\HmiPackage\obj\x64\Debug\ProjectArchitectures.txt
 D:\webApp\Atlas\Atlas\HmiPackage\obj\x64\Debug\HmiPackage.wapproj.LastBuild.txt
+D:\webApp\Atlas\Atlas\HmiPackage\bin\x64\Debug\HMI\FgwDotnet.dll
+D:\webApp\Atlas\Atlas\HmiPackage\bin\x64\Debug\HMI\ja\FgwDotnet.resources.dll

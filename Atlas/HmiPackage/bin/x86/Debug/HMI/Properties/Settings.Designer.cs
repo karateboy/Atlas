@@ -69,5 +69,17 @@ namespace HMI.Properties {
                 this["accessLevelList"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.240.0")]
+        public string finsAddr {
+            get {
+                return ((string)(this["finsAddr"]));
+            }
+            set {
+                this["finsAddr"] = value;
+            }
+        }
     }
 }

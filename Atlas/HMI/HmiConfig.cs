@@ -70,11 +70,15 @@ namespace HMI
             }
         }
  
+        public string FinsAddr { get; set; }
         private HmiConfig()
         {
+            var setting = HMI.Properties.Settings.Default;
             AccountList = new List<Account>();
             LoadAccount();
+            FinsAddr = setting.finsAddr;
         }
+
         public List<Account> AccountList { get; set; }
 
         private void LoadAccount()

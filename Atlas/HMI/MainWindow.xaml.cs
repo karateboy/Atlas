@@ -18,7 +18,7 @@ namespace HMI
 {
     public enum AccessLevel
     {
-        User=1, Operator=2, Administrator=3
+        User = 1, Operator = 2, Administrator = 3
     }
     /// <summary>
     /// MainWindow.xaml 的互動邏輯
@@ -30,6 +30,11 @@ namespace HMI
             InitializeComponent();
             Instance = this;
             IsLogin = false;
+            FinsComm.Init();
+            if (!FinsComm.Instance.TestCommunication())
+            {
+                MessageBox.Show($"HMI 通訊中斷! (請檢查{HmiConfig.Instance.FinsAddr}是否可正常通訊)");                
+            }               
         }
 
         public static MainWindow Instance { get; set; }

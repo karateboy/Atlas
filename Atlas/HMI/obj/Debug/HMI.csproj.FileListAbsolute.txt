@@ -73,4 +73,5 @@ D:\webApp\Atlas\Atlas\HMI\obj\Debug\HMI.application
 D:\webApp\Atlas\Atlas\HMI\obj\Debug\HMI.csproj.CopyComplete
 D:\webApp\Atlas\Atlas\HMI\obj\Debug\HMI.exe
 D:\webApp\Atlas\Atlas\HMI\obj\Debug\HMI.pdb
-D:\webApp\Atlas\Atlas\HMI\obj\Debug\HMI.csprojAssemblyReference.cache
+D:\webApp\Atlas\Atlas\HMI\bin\Debug\FgwDotnet.dll
+D:\webApp\Atlas\Atlas\HMI\bin\Debug\ja\FgwDotnet.resources.dll

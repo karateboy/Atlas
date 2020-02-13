@@ -26,5 +26,8 @@
   &lt;string&gt;Administrator&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
+    <Setting Name="finsAddr" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0.240.0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
