@@ -15,6 +15,23 @@ namespace HMI
 {
     class FinsComm : IDisposable
     {
+        public enum MemAreaBitCode
+        {
+            CIO_Bit = 0x30,
+            WR_Bit = 0x31,
+            HR_Bit = 0x32,
+            AR_Bit = 0x33,
+            DM_Bit = 0x02
+        }
+
+        public enum MemAreaWordCode
+        {
+            CIO_Word = 0xB0,
+            WR_Word = 0xB1,
+            HR_Word = 0xB2,
+            AR_Word = 0xB3,
+            DM_Word = 0x82
+        }
         private static FinsComm instance;
 
         public static FinsComm Instance { get => instance; set => instance = value; }
@@ -40,22 +57,141 @@ namespace HMI
             port.Close();
         }
 
-        public void ReadBytes(uint start, uint len)
+        public bool ReadFloat(MemAreaWordCode memCode, uint addr, uint len, out float[] floatArray)
         {
-            FinsHead sendHead = new FinsHead();
-            FinsCommandMessage message = new FinsCommandMessage("0101820000000064");
+            if (ReadWord(memCode, addr, len, out byte[] byteArray))
+            {
+                floatArray = PLCDataConverter.PLC4ByteToSystemFloat(byteArray, 0, byteArray.Length/4);
+                return true;
+            }
+            else
+            {
+                floatArray = Array.Empty<float>();
+                return false;
+            }
+        }
 
+        public bool ReadInt(MemAreaWordCode memCode, uint addr, uint len, out int[] intArray)
+        {
+            if (ReadWord(memCode, addr, len, out byte[] byteArray))
+            {
+                intArray = PLCDataConverter.PLC2ByteAsBINToSystemInteger(byteArray, 0, byteArray.Length / 4);
+                return true;
+            }
+            else
+            {
+                intArray = Array.Empty<int>();
+                return false;
+            }
+        }
+        public bool ReadWord(MemAreaWordCode memCode, uint addr, uint len, out byte[] memory)
+        {
+
+            string cmd = $"0101{((uint)memCode).ToString("X2")}{addr.ToString("X6")}{len.ToString("X4")}";
+            Debug.WriteLine($"FINS cmd={cmd}");
+            FinsCommandMessage message = new FinsCommandMessage(cmd);
+
+            FinsHead sendHead = new FinsHead();
             sendHead.Compose(peerAddr, -1);
             port.Send(sendHead, message.GetBytes(), message.Length);
+            Byte[] rcvData;
+            port.Receive(out _, out rcvData, 1000);
+
+            FinsResponseMessage rcvMessage = new FinsResponseMessage(rcvData);
+
+            if (rcvMessage.MRES != 0)
+            {
+                memory = Array.Empty<byte>();
+                return false;
+            }
+            else
+            {
+                memory = rcvMessage.GetBytes(4, rcvMessage.Length - 4);
+                return true;
+            }
+        }
+
+        public bool ReadBit(MemAreaBitCode memCode, uint addr, uint bit_addr, uint len, out bool[] boolArray)
+        {
+
+            string cmd = $"0101{((uint)memCode).ToString("X2")}{addr.ToString("X4")}{bit_addr.ToString("X2")}{len.ToString("X4")}";
+            Debug.WriteLine($"FINS cmd={cmd}");
+            FinsCommandMessage message = new FinsCommandMessage(cmd);
+
+            FinsHead sendHead = new FinsHead();
+            sendHead.Compose(peerAddr, -1);
+            port.Send(sendHead, message.GetBytes(), message.Length);
+            Byte[] rcvData;
+            port.Receive(out _, out rcvData, 1000);
+
+            FinsResponseMessage rcvMessage = new FinsResponseMessage(rcvData);
+
+            if (rcvMessage.MRES != 0)
+            {
+                boolArray = Array.Empty<bool>();
+                return false;
+            }
+            else
+            {
+                byte[] memory = rcvMessage.GetBytes(4, rcvMessage.Length - 4);
+                boolArray = PLCDataConverter.PLC1ByteAsBITToSystemBoolean(memory, 0, memory.Length);
+                return true;
+            }
+        }
+        public bool WriteWord(MemAreaWordCode mem_code, uint addr, in byte[] sendData)
+        {
+            int len = sendData.Length / 2;
+            string cmd = $"0102{((uint)mem_code).ToString("X2")}{addr.ToString("X6")}{len.ToString("X4")}";
+            Debug.WriteLine($"FINS cmd={cmd}");
+            FinsCommandMessage message = new FinsCommandMessage(cmd);
+            message.SetBytes(sendData, message.Length);
+
+            FinsHead sendHead = new FinsHead();
+            sendHead.Compose(peerAddr, -1);
+            port.Send(sendHead, message.GetBytes(), message.Length);
+
 
             FinsHead rcvHead;
             Byte[] rcvData;
             port.Receive(out rcvHead, out rcvData, 1000);
-
             FinsResponseMessage rcvMessage = new FinsResponseMessage(rcvData);
+            if (rcvMessage.MRES != 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
 
-            Byte[] memoryData = rcvMessage.GetBytes(4, rcvMessage.Length - 4);
-            int[] wordData = PLCDataConverter.PLC2ByteAsBINToSystemInteger(memoryData, 0, memoryData.Length / 2);
+        public bool WriteBit(MemAreaBitCode memCode, uint addr, uint bit_addr, in bool[] boolArray)
+        {
+            byte[] data = new byte[boolArray.Length];
+            PLCDataConverter.SystemBooleanToPLC1ByteAsBIT(boolArray, ref data, 0);
+            int len = data.Length;
+            string cmd = $"0102{((uint)memCode).ToString("X2")}{addr.ToString("X4")}{bit_addr.ToString("X2")}{len.ToString("X4")}";
+            Debug.WriteLine($"FINS cmd={cmd}");
+            FinsCommandMessage message = new FinsCommandMessage(cmd);
+            message.SetBytes(data, message.Length);
+
+            FinsHead sendHead = new FinsHead();
+            sendHead.Compose(peerAddr, -1);
+            port.Send(sendHead, message.GetBytes(), message.Length);
+
+
+            FinsHead rcvHead;
+            Byte[] rcvData;
+            port.Receive(out rcvHead, out rcvData, 1000);
+            FinsResponseMessage rcvMessage = new FinsResponseMessage(rcvData);
+            if (rcvMessage.MRES != 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public bool TestCommunication()
