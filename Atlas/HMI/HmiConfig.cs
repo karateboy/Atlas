@@ -11,6 +11,9 @@ using System.Collections.ObjectModel;
 using System.Windows.Data;
 using System.Globalization;
 using System.Diagnostics;
+using Newtonsoft.Json;
+using System.IO;
+using System.Reflection;
 
 namespace HMI
 {
@@ -54,6 +57,13 @@ namespace HMI
             }
         }
     }
+
+    public class JsonConfig
+    {
+        public List<string> AI_ID;
+        public List<string> Unit;
+    }
+
     sealed class HmiConfig
     {
         private static volatile HmiConfig instance;
@@ -79,12 +89,19 @@ namespace HMI
                 HMI.Properties.Settings.Default.Save();
             }
         }
+
+        public JsonConfig AppConfig;
         private HmiConfig()
         {
             var setting = HMI.Properties.Settings.Default;
             AccountList = new List<Account>();
             LoadAccount();
             FinsAddr = setting.finsAddr;
+            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Config\config.json");
+            string json = File.ReadAllText(path);
+
+            //AppConfig = JsonConvert.DeserializeObject<JsonConfig>("{AI_ID:[], Unit:[] }");
+            AppConfig = JsonConvert.DeserializeObject<JsonConfig>(json);
         }
 
         public List<Account> AccountList { get; set; }
