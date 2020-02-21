@@ -30,23 +30,39 @@ namespace HMI
             InitializeComponent();
             Instance = this;
             IsLogin = false;
+            handleArgument();
             FinsComm.Init();
             if (!FinsComm.Instance.TestCommunication())
             {
                 MessageBox.Show($"HMI 通訊中斷! (請檢查{HmiConfig.Instance.FinsAddr}是否可正常通訊)");
             }
-            bool ret = false;
-            byte[] sendData = new byte[] { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 };
-            ret = FinsComm.Instance.WriteWord(FinsComm.MemAreaWordCode.DM_Word, 0, sendData);
-            Debug.WriteLine($"WriteWord ret={ret} {string.Join(",", sendData)}");
-            ret = FinsComm.Instance.ReadWord(FinsComm.MemAreaWordCode.DM_Word, 0, 10, out byte[] recv);
-            Debug.WriteLine($"ReadWord ret={ret} len={recv.Length} {string.Join(",", recv)}");
-            bool[] data = new bool[] {true, false, true, false };
-            ret = FinsComm.Instance.WriteBit(FinsComm.MemAreaBitCode.WR_Bit, 30, 0, in data);
-            Debug.WriteLine($"WriteBit ret={ret} len={data.Length} {string.Join(",", data)}");
-            ret = FinsComm.Instance.ReadBit(FinsComm.MemAreaBitCode.WR_Bit, 30, 0, 4, out bool[] boolArray);
-            Debug.WriteLine($"ReadBit ret={ret} len={boolArray.Length} {string.Join(",", boolArray)}");
+            //bool ret = false;
+            //byte[] sendData = new byte[] { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 };
+            //ret = FinsComm.Instance.WriteWord(FinsComm.MemAreaWordCode.DM_Word, 0, sendData);
+            //Debug.WriteLine($"WriteWord ret={ret} {string.Join(",", sendData)}");
+            //ret = FinsComm.Instance.ReadWord(FinsComm.MemAreaWordCode.DM_Word, 0, (uint) sendData.Length/2, out byte[] recv);
+            //Debug.WriteLine($"ReadWord ret={ret} len={recv.Length} {string.Join(",", recv)}");
+            //bool[] data = new bool[] {true, false, true, false };
+            //ret = FinsComm.Instance.WriteBit(FinsComm.MemAreaBitCode.WR_Bit, 30, 0, in data);
+            //Debug.WriteLine($"WriteBit ret={ret} len={data.Length} {string.Join(",", data)}");
+            //ret = FinsComm.Instance.ReadBit(FinsComm.MemAreaBitCode.WR_Bit, 30, 0, 4, out bool[] boolArray);
+            //Debug.WriteLine($"ReadBit ret={ret} len={boolArray.Length} {string.Join(",", boolArray)}");
 
+        }
+
+        private void handleArgument()
+        {
+            string[] args = Environment.GetCommandLineArgs();
+            var dictionary = new Dictionary<string, string>();
+            for (int index = 1; index < args.Length; index += 2)
+            {                
+                dictionary.Add(args[index], args[index + 1]);
+            }
+
+            if(dictionary.TryGetValue("fins_addr", out string fins_addr))
+            {
+                HmiConfig.Instance.FinsAddr = fins_addr;                
+            }
         }
 
         public static MainWindow Instance { get; set; }

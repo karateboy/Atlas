@@ -59,9 +59,10 @@ namespace HMI
 
         public bool ReadFloat(MemAreaWordCode memCode, uint addr, uint len, out float[] floatArray)
         {
-            if (ReadWord(memCode, addr, len, out byte[] byteArray))
+            if (ReadWord(memCode, addr, len * 2, out byte[] byteArray))
             {
-                floatArray = PLCDataConverter.PLC4ByteToSystemFloat(byteArray, 0, byteArray.Length/4);
+                Debug.WriteLine($"byteArray len={byteArray.Length}");
+                floatArray = PLCDataConverter.PLC4ByteToSystemFloat(byteArray, 0, byteArray.Length / 4);
                 return true;
             }
             else
@@ -75,7 +76,8 @@ namespace HMI
         {
             if (ReadWord(memCode, addr, len, out byte[] byteArray))
             {
-                intArray = PLCDataConverter.PLC2ByteAsBINToSystemInteger(byteArray, 0, byteArray.Length / 4);
+                Debug.WriteLine($"FinsComm.ReadInt out len={byteArray.Length}");
+                intArray = PLCDataConverter.PLC2ByteAsBINToSystemInteger(byteArray, 0, byteArray.Length / 2);
                 return true;
             }
             else
@@ -86,8 +88,9 @@ namespace HMI
         }
         public bool ReadWord(MemAreaWordCode memCode, uint addr, uint len, out byte[] memory)
         {
-
-            string cmd = $"0101{((uint)memCode).ToString("X2")}{addr.ToString("X6")}{len.ToString("X4")}";
+            Debug.Assert(len <= byte.MaxValue);
+            Debug.Assert(addr <= ushort.MaxValue);
+            string cmd = $"0101{((uint)memCode).ToString("X2")}{addr.ToString("X4")}00{len.ToString("X4")}";
             Debug.WriteLine($"FINS cmd={cmd}");
             FinsCommandMessage message = new FinsCommandMessage(cmd);
 
@@ -111,10 +114,9 @@ namespace HMI
             }
         }
 
-        public bool ReadBit(MemAreaBitCode memCode, uint addr, uint bit_addr, uint len, out bool[] boolArray)
+        public bool ReadBit(MemAreaBitCode memCode, uint addr, uint bitAddr, uint len, out bool[] boolArray)
         {
-
-            string cmd = $"0101{((uint)memCode).ToString("X2")}{addr.ToString("X4")}{bit_addr.ToString("X2")}{len.ToString("X4")}";
+            string cmd = $"0101{((uint)memCode).ToString("X2")}{(addr + bitAddr).ToString("X6")}{len.ToString("X4")}";
             Debug.WriteLine($"FINS cmd={cmd}");
             FinsCommandMessage message = new FinsCommandMessage(cmd);
 
@@ -165,12 +167,12 @@ namespace HMI
             }
         }
 
-        public bool WriteBit(MemAreaBitCode memCode, uint addr, uint bit_addr, in bool[] boolArray)
+        public bool WriteBit(MemAreaBitCode memCode, uint addr, uint bitAddr, in bool[] boolArray)
         {
             byte[] data = new byte[boolArray.Length];
             PLCDataConverter.SystemBooleanToPLC1ByteAsBIT(boolArray, ref data, 0);
             int len = data.Length;
-            string cmd = $"0102{((uint)memCode).ToString("X2")}{addr.ToString("X4")}{bit_addr.ToString("X2")}{len.ToString("X4")}";
+            string cmd = $"0102{((uint)memCode).ToString("X2")}{(addr + bitAddr).ToString("X6")}{len.ToString("X4")}";
             Debug.WriteLine($"FINS cmd={cmd}");
             FinsCommandMessage message = new FinsCommandMessage(cmd);
             message.SetBytes(data, message.Length);

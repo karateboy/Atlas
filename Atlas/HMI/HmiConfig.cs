@@ -29,9 +29,9 @@ namespace HMI
     public class AccessLevelConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {            
+        {
             Debug.WriteLine($"AccessLevel: convert ${value.GetType().FullName} to enum");
-            if(value is AccessLevel ac)
+            if (value is AccessLevel ac)
             {
                 return Enum.GetName(typeof(AccessLevel), ac);
             }
@@ -44,7 +44,7 @@ namespace HMI
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             Debug.WriteLine($"AccessLevel: convertBack ${value.GetType().FullName} to enum");
-            if(value is string str && Enum.TryParse<AccessLevel>(str, out AccessLevel ac))
+            if (value is string str && Enum.TryParse<AccessLevel>(str, out AccessLevel ac))
             {
                 return ac;
             }
@@ -61,7 +61,7 @@ namespace HMI
         {
             get
             {
-                if(instance == null)
+                if (instance == null)
                 {
                     instance = new HmiConfig();
                 }
@@ -69,8 +69,16 @@ namespace HMI
                 return instance;
             }
         }
- 
-        public string FinsAddr { get; set; }
+
+        private string finsAddr = string.Empty;
+        public string FinsAddr
+        {
+            get => finsAddr; set
+            {
+                finsAddr = value;
+                HMI.Properties.Settings.Default.Save();
+            }
+        }
         private HmiConfig()
         {
             var setting = HMI.Properties.Settings.Default;
@@ -102,7 +110,7 @@ namespace HMI
             HMI.Properties.Settings.Default.userList.Clear();
             HMI.Properties.Settings.Default.passwordList.Clear();
             HMI.Properties.Settings.Default.accessLevelList.Clear();
-            foreach(Account account in AccountList)
+            foreach (Account account in AccountList)
             {
                 HMI.Properties.Settings.Default.userList.Add(account.ID);
                 HMI.Properties.Settings.Default.passwordList.Add(account.Password);

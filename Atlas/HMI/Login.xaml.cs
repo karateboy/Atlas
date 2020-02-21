@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using static System.Diagnostics.Trace;
+using System.Diagnostics;
 
 namespace HMI
 {
@@ -23,7 +23,7 @@ namespace HMI
     {
         public Login()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -54,16 +54,25 @@ namespace HMI
         {
             try
             {
-                var matched = HmiConfig.Instance.AccountList.Find(account => {
+                Account matched = HmiConfig.Instance.AccountList.Find(account =>
+                {
                     return account.ID == UserName && account.Password == password.Password;
                 });
-                MainWindow.Instance.IsLogin = true;
-                MainWindow.Instance.AccessLevel = matched.AccessLevel;
-                MainWindow.Instance.Navigate(new Main());
+                if(matched == null)
+                {
+                    MessageBox.Show("錯誤的帳號或密碼!");
+                }
+                else
+                {
+                    MainWindow.Instance.IsLogin = true;
+                    MainWindow.Instance.AccessLevel = matched.AccessLevel;
+                    MainWindow.Instance.Navigate(new Main());
+                }
+
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("錯誤的帳號或密碼!");
+                Trace.WriteLine(ex.Message);
             }
         }
 
@@ -71,7 +80,7 @@ namespace HMI
         {
             UserName = string.Empty;
             password.Password = string.Empty;
-            
+
         }
     }
 }

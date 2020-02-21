@@ -5,8 +5,8 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:local="clr-namespace:HMI"
 	  mc:Ignorable="d"
-	  d:DesignHeight="600"
-	  d:DesignWidth="800"
+	  d:DesignHeight="768"
+	  d:DesignWidth="1024"
 	  Title="Main"
 	  Name="MainPage"
 	  Loaded="Page_Loaded">
@@ -17,7 +17,7 @@
 			<RowDefinition Height="*"></RowDefinition>
 			<RowDefinition Height="auto"></RowDefinition>
 		</Grid.RowDefinitions>
-		<Label Content="AMC Manifold Controller"
+		<Label Content="{Binding ControllerName,ElementName=MainPage}"
 			   FontSize="36"
 			   FontWeight="Bold"
 			   Grid.Row="0" />
@@ -40,12 +40,17 @@
 					   VerticalAlignment="Center">DATA__CH:</Label>
 				<TextBox IsReadOnly="True"
 						 IsEnabled="False"
-						 Text="0"
-						 TextAlignment="Center" VerticalContentAlignment="Center"></TextBox>
-				<Label HorizontalAlignment="Center" VerticalAlignment="Center">0</Label>
+						 Text="{Binding DataChannelNum,ElementName=MainPage}"
+						 TextAlignment="Center"
+						 VerticalContentAlignment="Center"></TextBox>
+				<Label HorizontalAlignment="Center"
+					   VerticalAlignment="Center">0</Label>
 			</UniformGrid>
-			<UniformGrid Grid.Row="1" Margin="10"
-						 Grid.Column="0" Rows="8" Columns="2"
+			<UniformGrid Grid.Row="1"
+						 Margin="10"
+						 Grid.Column="0"
+						 Rows="8"
+						 Columns="2"
 						 Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
 				<Label HorizontalAlignment="Right">Na+</Label>
 				<TextBox IsReadOnly="True"
@@ -73,14 +78,20 @@
 						 Text="0.00 ppbv"
 						 TextAlignment="Right"></TextBox>
 			</UniformGrid>
-			<UniformGrid Grid.Row="0" Margin="10"
-						Grid.Column="1" Rows="1" Columns="2">
-				<Label HorizontalAlignment="Right" VerticalAlignment="Center">Flow:</Label>
+			<UniformGrid Grid.Row="0"
+						 Margin="10"
+						 Grid.Column="1"
+						 Rows="1"
+						 Columns="3">
+				<Label HorizontalAlignment="Right"
+					   VerticalAlignment="Center">Flow:</Label>
 				<TextBox IsReadOnly="True"
 						 IsEnabled="False"
-						 Text="0.0LPM"
+						 Text="{Binding Flow, ElementName=MainPage}"
 						 TextAlignment="Center"
 						 VerticalContentAlignment="Center"></TextBox>
+				<Label HorizontalAlignment="Left"
+					   VerticalAlignment="Center">LPM</Label>
 			</UniformGrid>
 			<UniformGrid Grid.Row="1"
 						 Grid.Column="1"
@@ -124,17 +135,25 @@
 						 Text="0.00 ppbv"
 						 TextAlignment="Right"></TextBox>
 			</UniformGrid>
-			<UniformGrid Grid.Row="0" Margin="10"
-						 Grid.Column="2" Rows="2">
-				<TextBox Text="{Binding CurrentTime, ElementName=MainPage}" IsReadOnly="True"></TextBox>
+			<UniformGrid Grid.Row="0"
+						 Margin="10"
+						 Grid.Column="2"
+						 Rows="2">
+				<TextBox Text="{Binding CurrentTime, ElementName=MainPage}"
+						 IsReadOnly="True"></TextBox>
 				<Label>採樣 + 分析</Label>
 			</UniformGrid>
 			<UniformGrid Grid.Row="1"
-						 Grid.Column="2" Columns="2"
+						 Grid.Column="2"
+						 Columns="2"
 						 Margin="10"
 						 Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
 				<Label>執行順序</Label>
-				<TextBox IsReadOnly="True" IsEnabled="False" Text="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"></TextBox>
+				<TextBox IsReadOnly="True"
+						 IsEnabled="False"
+						 Text="5"
+						 VerticalContentAlignment="Center"
+						 HorizontalContentAlignment="Right"></TextBox>
 				<Label>採樣通道</Label>
 				<TextBox IsReadOnly="True"
 						 IsEnabled="False"
@@ -170,29 +189,46 @@
 		<Border Grid.Row="2"
 				BorderBrush="AliceBlue"
 				BorderThickness="10">
-			<local:PointShapeLineExample/>
+			<local:PointShapeLineExample />
 		</Border>
-		<StackPanel Grid.Row="3"
-					Orientation="Horizontal"
-					HorizontalAlignment="Center"
-					Margin="20">
+		<Grid Grid.Row="3"
+			  VerticalAlignment="Center">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"></ColumnDefinition>
+				<ColumnDefinition Width="*"></ColumnDefinition>
+				<ColumnDefinition Width="*"></ColumnDefinition>
+				<ColumnDefinition Width="*"></ColumnDefinition>
+				<ColumnDefinition Width="*"></ColumnDefinition>
+				<ColumnDefinition Width="*"></ColumnDefinition>
+			</Grid.ColumnDefinitions>
 			<Button x:Name="btnLogout"
+					Grid.Column="0"
 					Content="登出"
-					Click="btnLogout_Click"></Button>
-			<Button x:Name="btnRemoteMode">
-				<CheckBox Content="遠端模式"></CheckBox>
-			</Button>
-			<Button x:Name="btnOperation">
-				<CheckBox Content="系統運轉"></CheckBox>
-			</Button>
+					Click="btnLogout_Click"
+					FontSize="18"></Button>
+			<CheckBox x:Name="chkOnSite"
+					  Content="現場模式"
+					  Grid.Column="1"
+					  VerticalAlignment="Center"
+					  HorizontalAlignment="Center"
+					  IsChecked="{Binding IsOnSite, ElementName=MainPage}"
+					  FontSize="18" />
+			<CheckBox Content="系統運轉"
+					  VerticalAlignment="Center"
+					  HorizontalAlignment="Center"
+					  Grid.Column="2"
+					  FontSize="18"></CheckBox>
 			<Button x:Name="btnConfig"
 					Content="參數設定"
+					Grid.Column="3"
 					Click="btnConfig_Click" />
 			<Button x:Name="btnQuery"
+					Grid.Column="4"
 					Content="資料查詢" />
 			<Button x:Name="btnStatus"
+					Grid.Column="5"
 					Content="系統狀態"
 					Click="btnStatus_Click" />
-		</StackPanel>
+		</Grid>
 	</Grid>
 </Page>
