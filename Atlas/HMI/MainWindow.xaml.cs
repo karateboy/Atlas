@@ -31,11 +31,15 @@ namespace HMI
             Instance = this;
             IsLogin = false;
             handleArgument();
+            /*
             FinsComm.Init();
             if (!FinsComm.Instance.TestCommunication())
             {
                 MessageBox.Show($"HMI 通訊中斷! (請檢查{HmiConfig.Instance.FinsAddr}是否可正常通訊)");
             }
+            */
+            Sysmac.Init();
+
             //bool ret = false;
             //byte[] sendData = new byte[] { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 };
             //ret = FinsComm.Instance.WriteWord(FinsComm.MemAreaWordCode.DM_Word, 0, sendData);

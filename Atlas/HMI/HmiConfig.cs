@@ -62,6 +62,13 @@ namespace HMI
     {
         public List<string> AI_ID;
         public List<string> Unit;
+        public List<string> SysState;
+        public List<string> Step;
+
+        public override string ToString() => $"AI_ID:{string.Join(",", AI_ID.ToArray())}" +
+            $" Unit:{string.Join(",", Unit.ToArray())}" +
+            $"SysState:{string.Join(",", SysState.ToArray())}" +
+            $"Step:{string.Join(",", Step.ToArray())}";
     }
 
     sealed class HmiConfig
@@ -100,7 +107,6 @@ namespace HMI
             string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Config\config.json");
             string json = File.ReadAllText(path);
 
-            //AppConfig = JsonConvert.DeserializeObject<JsonConfig>("{AI_ID:[], Unit:[] }");
             AppConfig = JsonConvert.DeserializeObject<JsonConfig>(json);
         }
 

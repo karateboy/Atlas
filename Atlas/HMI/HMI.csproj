@@ -88,6 +88,10 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FgwCompolet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e010e60d6deeb244">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\OMRON\CX-Compolet\assembly\Compolet.1.1.0.1\FgwCompolet.dll</HintPath>
+    </Reference>
     <Reference Include="FgwDotnet, Version=1.0.0.3, Culture=neutral, PublicKeyToken=e010e60d6deeb244">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\OMRON\FinsServerNT\assembly\Fgw.1.0.0.3\FgwDotnet.dll</HintPath>
@@ -103,6 +107,10 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SysmacCompolet, Version=1.1.0.2, Culture=neutral, PublicKeyToken=e010e60d6deeb244">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\OMRON\CX-Compolet\assembly\Compolet.1.1.0.1\SysmacCompolet.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -164,7 +172,6 @@
     <Compile Include="EventPage.xaml.cs">
       <DependentUpon>EventPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FinsComm.cs" />
     <Compile Include="FlowConfigPage.xaml.cs">
       <DependentUpon>FlowConfigPage.xaml</DependentUpon>
     </Compile>
@@ -187,6 +194,7 @@
     <Compile Include="SortConfigPage.xaml.cs">
       <DependentUpon>SortConfigPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Sysmac.cs" />
     <Compile Include="SysStatusPage.xaml.cs">
       <DependentUpon>SysStatusPage.xaml</DependentUpon>
     </Compile>

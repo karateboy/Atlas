@@ -141,7 +141,8 @@
 						 Rows="2">
 				<TextBox Text="{Binding CurrentTime, ElementName=MainPage}"
 						 IsReadOnly="True"></TextBox>
-				<Label>採樣 + 分析</Label>
+				<Label Name="lblSystemState"
+					   Content="系統狀態" />
 			</UniformGrid>
 			<UniformGrid Grid.Row="1"
 						 Grid.Column="2"
@@ -149,37 +150,42 @@
 						 Margin="10"
 						 Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
 				<Label>執行順序</Label>
-				<TextBox IsReadOnly="True"
+				<TextBox x:Name="txtExecSeq"
+						 IsReadOnly="True"
 						 IsEnabled="False"
-						 Text="5"
 						 VerticalContentAlignment="Center"
-						 HorizontalContentAlignment="Right"></TextBox>
+						 HorizontalContentAlignment="Right"
+						 TextChanged="txtExecSeq_TextChanged"></TextBox>
 				<Label>採樣通道</Label>
-				<TextBox IsReadOnly="True"
+				<TextBox x:Name="txtSampleChannel"
+						 IsReadOnly="True"
 						 IsEnabled="False"
-						 Text="5"
 						 VerticalContentAlignment="Center"
 						 HorizontalContentAlignment="Right"></TextBox>
 				<Label>潔淨時間</Label>
-				<TextBox IsReadOnly="True"
+				<TextBox x:Name="txtCleanTime"
+						IsReadOnly="True"
 						 IsEnabled="False"
 						 Text="0:0"
 						 VerticalContentAlignment="Center"
 						 HorizontalContentAlignment="Right"></TextBox>
 				<Label>採樣時間</Label>
-				<TextBox IsReadOnly="True"
+				<TextBox x:Name="txtSampleTime"
+						 IsReadOnly="True"
 						 IsEnabled="False"
 						 Text="27:18"
 						 VerticalContentAlignment="Center"
 						 HorizontalContentAlignment="Right"></TextBox>
 				<Label>分析時間</Label>
-				<TextBox IsReadOnly="True"
+				<TextBox x:Name="txtAnalysisTime"
+					IsReadOnly="True"
 						 IsEnabled="False"
 						 Text="26:48"
 						 VerticalContentAlignment="Center"
 						 HorizontalContentAlignment="Right"></TextBox>
 				<Label>分析通道</Label>
-				<TextBox IsReadOnly="True"
+				<TextBox x:Name="txtAnalysisChannel"
+						IsReadOnly="True"
 						 IsEnabled="False"
 						 Text="4"
 						 VerticalContentAlignment="Center"

@@ -14,64 +14,69 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
 using System.Threading;
+using System.Windows.Threading;
+using OMRON.Compolet.SYSMAC;
 
 namespace HMI
 {
     /// <summary>
     /// Main.xaml 的互動邏輯
     /// </summary>
+    /// 
     public partial class Main : Page
     {
-        public Main()
+        private DispatcherTimer dispatcherTimer = null;
+        private void OnTimerTick(object sender, EventArgs e)
         {
-            InitializeComponent();
             CurrentTime = DateTime.Now.ToString();
+        }
 
-            // Init DP state
-            ThreadPool.QueueUserWorkItem(_ =>
+        private async Task sysmacPlcStateAsync()
+        {
             {
-                if (FinsComm.Instance.ReadBit(FinsComm.MemAreaBitCode.WR_Bit, 30, 0, 2, out bool[] boolArray))
+                var (ret, boolArray) = await Sysmac.ReadBitAsync(SysmacCSBase.MemoryTypes.WR, 30, 0, 2);
+                if (ret)
                 {
-                    Dispatcher.BeginInvoke(new Action(() =>
+                    _ = Dispatcher.BeginInvoke(new Action(() =>
                     {
                         IsOnSite = boolArray[0];
                         IsSystemHalt = boolArray[1];
                     }));
                 }
                 else
-                {
                     Trace.WriteLine("Fail to read IsOnSite.");
-                }
-
-                if (FinsComm.Instance.ReadInt(FinsComm.MemAreaWordCode.DM_Word, 320, 1, out int[] dataCh))
+            }
+            {
+                var (ret, dataCh) = await Sysmac.ReadIntAsync(SysmacCSBase.MemoryTypes.DM, 320);
+                if (ret)
                 {
-                    Dispatcher.BeginInvoke(new Action(() =>
+                    _ = Dispatcher.BeginInvoke(new Action(() =>
                     {
-                        DataChannelNum = dataCh[0];
+                        DataChannelNum = dataCh;
                     }));
                 }
                 else
-                {
                     Trace.WriteLine("Fail to read DatCh.");
-                }
-
-
-                if (FinsComm.Instance.ReadFloat(FinsComm.MemAreaWordCode.DM_Word, 1849, 1, out float[] flow))
+            }
+            {
+                var (ret, flow) = await Sysmac.ReadFloatAsync(SysmacCSBase.MemoryTypes.DM, 1849);
+                if (ret)
                 {
-                    Dispatcher.BeginInvoke(new Action(() =>
+                    _ = Dispatcher.BeginInvoke(new Action(() =>
                     {
-                        Flow = flow[0];
+                        Flow = flow;
                     }));
                 }
                 else
-                {
                     Trace.WriteLine("Fail to read Flow.");
-                }
+            }
 
-                if (FinsComm.Instance.ReadInt(FinsComm.MemAreaWordCode.WR_Word, 69, 1, out int[] ctrlName))
+            {
+                var (ret, ctrlName) = await Sysmac.ReadIntAsync(SysmacCSBase.MemoryTypes.WR, 69);
+                if (ret)
                 {
-                    uint value = (uint)ctrlName[0];
-                    Dispatcher.BeginInvoke(new Action(() =>
+                    uint value = (uint)ctrlName;
+                    _ = Dispatcher.BeginInvoke(new Action(() =>
                     {
                         if (((value >> 5) & 1) != 0)
                             ControllerName = " AMC Manifold Controller";
@@ -87,10 +92,75 @@ namespace HMI
                     }));
                 }
                 else
-                {
                     Trace.WriteLine("Fail to read Ctrl Name.");
+            }
+
+            {
+                var (ret, systemState) = await Sysmac.ReadIntAsync(SysmacCSBase.MemoryTypes.DM, 493);
+                if (ret)
+                {
+                    int idx = (systemState - 1) % HmiConfig.Instance.AppConfig.SysState.Count();
+                    lblSystemState.Content = HmiConfig.Instance.AppConfig.SysState[idx];
                 }
-            });
+                else
+                    Trace.WriteLine("Fail to read System State.");
+            }
+            {
+                var (ret, seq) = await Sysmac.ReadIntAsync(SysmacCSBase.MemoryTypes.DM, 490);
+
+                if (ret)
+                    txtExecSeq.Text = $"{seq}";
+            }
+            {
+                var (ret, sampleChanel) = await Sysmac.ReadIntAsync(SysmacCSBase.MemoryTypes.DM, 0);
+                if (ret)
+                {
+                    txtSampleChannel.Text = (sampleChanel % 100).ToString();
+                }
+            }
+            {
+                var (ret, cleanTime) = await Sysmac.ReadIntAsync(SysmacCSBase.MemoryTypes.WR, 242);
+                var (ret1, showStep) = await Sysmac.ReadBitAsync(SysmacCSBase.MemoryTypes.WR, 90, 2);
+                var (ret2, stepNo) = await Sysmac.ReadIntAsync(SysmacCSBase.MemoryTypes.WR, 243);
+                var (ret3, cleanTime2) = await Sysmac.ReadIntAsync(SysmacCSBase.MemoryTypes.DM, 4);
+                if (ret && ret1 && ret2 && ret3)
+                {
+                    Debug.WriteLine($"showStep={showStep}");
+                    Debug.WriteLine($"cleanTime2={cleanTime2}");
+                    var step = HmiConfig.Instance.AppConfig.Step[stepNo % HmiConfig.Instance.AppConfig.Step.Count()];
+
+                    txtCleanTime.Text = $"{cleanTime}:{cleanTime2}";
+                }
+            }
+            {
+                var (ret, sampleTime) = await Sysmac.ReadIntAsync(SysmacCSBase.MemoryTypes.DM, 5, 2);
+                if (ret)
+                    txtSampleTime.Text = $"{sampleTime[0]}:{sampleTime[1]}";
+            }
+            {
+                var (ret, analysisTime) = await Sysmac.ReadIntAsync(SysmacCSBase.MemoryTypes.DM, 9, 2);
+                if (ret)
+                    txtAnalysisTime.Text = $"{analysisTime[0]}:{analysisTime[1]}";
+            }
+            {
+                var (ret, analysisChannel) = await Sysmac.ReadIntAsync(SysmacCSBase.MemoryTypes.DM, 23);
+                if (ret)
+                    txtAnalysisChannel.Text = analysisChannel.ToString();
+            }
+        }
+
+        public Main()
+        {
+            InitializeComponent();
+            CurrentTime = DateTime.Now.ToString();
+
+            dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Interval = TimeSpan.FromSeconds(1.0);
+            dispatcherTimer.Tick += OnTimerTick;
+            dispatcherTimer.Start();
+
+            // Init DP state
+            _ = sysmacPlcStateAsync();
         }
 
         public string CurrentTime
@@ -103,18 +173,13 @@ namespace HMI
         public static readonly DependencyProperty CurrentTimeProperty =
             DependencyProperty.Register("CurrentTime", typeof(string), typeof(Main), new PropertyMetadata(string.Empty));
 
-
-
         public bool IsOnSite
         {
             get { return (bool)GetValue(IsOnSiteProperty); }
             set
             {
                 SetValue(IsOnSiteProperty, value);
-                ThreadPool.QueueUserWorkItem(_ =>
-                {
-                    FinsComm.Instance.WriteBit(FinsComm.MemAreaBitCode.WR_Bit, 30, 0, new bool[] { value });
-                });
+                _ = Sysmac.WriteBitAsync(SysmacCSBase.MemoryTypes.WR, 30, 0, value);
             }
         }
 
@@ -130,10 +195,7 @@ namespace HMI
             set
             {
                 SetValue(IsSystemHaltProperty, value);
-                ThreadPool.QueueUserWorkItem(_ =>
-                {
-                    FinsComm.Instance.WriteBit(FinsComm.MemAreaBitCode.WR_Bit, 30, 1, new bool[] { value });
-                });
+                _ = Sysmac.WriteBitAsync(SysmacCSBase.MemoryTypes.WR, 30, 1, value);
             }
         }
 
@@ -181,15 +243,8 @@ namespace HMI
         private void btnLogout_Click(object sender, RoutedEventArgs e)
         {
             btnLogout.IsEnabled = false;
-            ThreadPool.QueueUserWorkItem(_ =>
-            {
-                FinsComm.Instance.WriteBit(FinsComm.MemAreaBitCode.WR_Bit, 0, 1, new bool[] { true });
-                Dispatcher.BeginInvoke(new Action(() =>
-                {
-                    MainWindow.Logout();
-                }));
-            });
-
+            _ = Sysmac.WriteBitAsync(SysmacCSBase.MemoryTypes.WR, 0, 1, true);
+            MainWindow.Logout();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -200,29 +255,23 @@ namespace HMI
         private void btnConfig_Click(object sender, RoutedEventArgs e)
         {
             btnConfig.IsEnabled = false;
-            ThreadPool.QueueUserWorkItem(_ =>
-            {
-                FinsComm.Instance.WriteBit(FinsComm.MemAreaBitCode.WR_Bit, 11, 0, new bool[] { true });
-                Dispatcher.BeginInvoke(new Action(() =>
-                {
-                    MainWindow.Instance.Navigate(new ConfigPage());
-                }));
-            });
-
+            _ = Sysmac.WriteBitAsync(SysmacCSBase.MemoryTypes.WR, 11, 0, true);
+            MainWindow.Instance.Navigate(new ConfigPage());
         }
 
         private void btnStatus_Click(object sender, RoutedEventArgs e)
         {
             btnStatus.IsEnabled = false;
-            ThreadPool.QueueUserWorkItem(_ =>
-            {
-                FinsComm.Instance.WriteBit(FinsComm.MemAreaBitCode.WR_Bit, 11, 2, new bool[] { true });
-                Dispatcher.BeginInvoke(new Action(() =>
-                {
-                    MainWindow.Instance.Navigate(new SysStatusPage());
-                }));
-            });
+            _ = Sysmac.WriteBitAsync(SysmacCSBase.MemoryTypes.WR, 11, 2, true);
+            MainWindow.Instance.Navigate(new SysStatusPage());
         }
 
+        private void txtExecSeq_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string newText = txtExecSeq.Text;
+            int newIntValue = int.Parse(newText);
+            Debug.WriteLine($"txt = {newText}");
+            _ = Sysmac.WriteIntAsync(SysmacCSBase.MemoryTypes.DM, 490, newIntValue);
+        }
     }
 }
